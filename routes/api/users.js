@@ -1,6 +1,13 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../../models/user');
+var bodyParser = require('body-parser');
+
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({
+  extended:false
+}));
+
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -103,6 +110,36 @@ User.findOne(
 
           return res.json({success:true, status: removed});
         });
+      });
+
+      //Register a new user
+      router.post('/register', function(req,res,next){
+        var data = req.body;
+     
+        User.register(new User({
+          username: data.username,
+          email: data.email,
+          first_name: data.first_name,
+          last_name: data.last_name
+        }), 
+        data.password, 
+        function(err, user){
+
+          if(err){
+
+            return res.json({
+              success: false, 
+              user: req.body,
+              errors: err
+            });
+          }
+            return res.json({
+              success: true,
+              user: user
+          });
+        
+        });
+
       });
 
 module.exports = router;
