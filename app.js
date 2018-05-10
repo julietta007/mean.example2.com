@@ -96,12 +96,13 @@ next();
 
 //Session based access control
 app.use(function(req,res,next){
-  //return next();
+  return next();
 
 var whitelist = [
     '/',
     '/favicon.ico',
-    '/users/login'
+    '/users/login',
+    '/users/register'
   ];
 
   if(whitelist.indexOf(req.url) !== -1){
@@ -111,6 +112,7 @@ var whitelist = [
   //Allow access to dynamic end points
   var subs = [
     '/stylesheets/',
+    '/src/',
   ];
   
   for(var sub of subs){
