@@ -1,5 +1,5 @@
 function viewIndex(){
-    var url = 'http://localhost:3000/api/users';
+    var url = 'http://loc.mean.example.com/api/users';
 
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url);
@@ -39,8 +39,9 @@ function viewIndex(){
     }
 
 }
+
 function viewUser(id){
-    var url = 'http://localhost:3000/api/users/' + id;
+    var url = 'http://loc.mean.example.com/api/users/' + id;
 
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url);
@@ -104,15 +105,16 @@ function viewUser(id){
         </div>
 
         <input type="submit" value="Submit">
-    
-    </form>`;
+        <button type="button" onclick="deleteUser
+        ('${id}')">Delete User!</button>
 
+    </form>`;
 
         var editUser = document.getElementById('editUser');
         editUser.addEventListener('submit', function(e){
             e.preventDefault();
             var formData = new FormData(editUser);
-            var url = 'http://localhost:3000/api/users';
+            var url = 'http://loc.mean.example.com/api/users';
             var xhr = new XMLHttpRequest();
             xhr.open('PUT', url);
             xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
@@ -122,7 +124,106 @@ function viewUser(id){
                 object[key] = value;
             });
             xhr.send(JSON.stringify(object));
+            xhr.onload = function(){
+                let data = JSON.parse(xhr.response);
+                if(data.success===true){
+                    viewIndex();
+                }
+            }
         });
     }
 }
+function createUser(){
+    var app = document.getElementById('app');
+    app.innerHTML = `<h2>Create a User</h2>
+
+    <form id="createUser" action="/api/users" method="post">
+        <div>
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username">
+        </div>
+
+        <div>
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email">
+        </div>
+
+        <div>
+        <label for="first_name">First_Name</label>
+        <input
+            type="text" name="first_name" id="first_name">
+        </div>
+
+        <div>
+        <label for="last_name">Last_Name</label>
+        <input type="text" name="last_name" id="last_name">
+        </div>
+
+        <input type="submit" value="Submit">
+    </form>`;
+    
+    var createUser = document.getElementById('createUser');
+    createUser.addEventListener('submit', function(e){
+        e.preventDefault();
+
+        var formData = new FormData(createUser);
+        var url = 'http://loc.mean.example.com/api/users';
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', url);
+
+        xhr.setRequestHeader(
+            'Content-Type',
+            'application/json; charset=UTF-8'
+        );
+        var object = {};
+        formData.forEach(function(value, key){
+            object[key]=value;
+        });
+
+        xhr.send(JSON.stringify(object));
+        xhr.onload = function(){
+            let data = JSON.parse(xhr.response);
+            if(data.success===true){
+                viewIndex();
+            }
+        }
+    });
+}
+
 viewIndex();
+
+var hash = window.location.hash.substring(1);
+if(hash){
+    let chunks = hash.split('-');
+
+    if(chunks[0]=='edit'){
+        viewUser(chunks[1])
+    }
+
+    if(chunks[0]=='createUser'){
+        createUser();
+    }
+}
+
+
+/*CREATING a delete button*/
+
+viewIndex();
+
+function deleteUser(id){
+    if(confirm('Are you sure?')){
+
+    var url = 'http://loc.mean.example.com/api/users/' + id;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('DELETE', url);
+    xhr.send();
+
+    xhr.onload = function(){
+        let data = JSON.parse(xhr.response);
+        if(data.success===true){
+            viewIndex();
+        }
+    }
+ }
+}

@@ -4,7 +4,7 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: rgb(4, 104, 107);
 }
 
 .table {
@@ -46,9 +46,12 @@ textarea{
 }
 
 input[type="submit"],
-button{
+button,
+a.button{
+
   padding: .75rem 1.25rem;
   font: 24px monospace;
+  text-decoration: none;
+  appearance: button;
+  color: #000;
 }
-
-
