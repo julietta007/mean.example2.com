@@ -4,14 +4,21 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
-
+var compression = require('compression')
 var mongoose = require('mongoose');
+var helmet = require('helmet');
+
+//Models
 var User = require('./models/user');
+
+//Router
 var indexRouter = require('./routes/index');
 var apiUsersRouter = require('./routes/api/users');
 var usersRouter = require('./routes/users');
 
 var app = express();
+app.use(compression());
+app.use(helmet());
 
 //Call the config file
 var config = require('./config.dev');
@@ -42,24 +49,6 @@ app.use(require('express-session')({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-/*
-passport.use(new LocalStrategy(
-  function(username, password, done){
-    User.findOne({username:username}, function(err, user){
-      if(err) {
-        return done(err)
-      }
-      if(!user){
-        return done(null, false)
-      }
-      if(!user.verifyPassword(password)){
-        return done(null, false);
-      }
-      return done(null, user);
-    });
-  }
-));
-*/
 
 passport.use(User.createStrategy());
 
@@ -128,6 +117,19 @@ var whitelist = [
   return res.redirect('/users/login');
 });
 
+//SETUP CORS
+app.use(function(req,res,next){
+res.header('Access-Control-Allow-Credentials', true);
+res.header('Access-Control-Allow-Origin', '*');
+res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+res.header('Access-Control-Allow-Headers', 'Origin,X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+  if('OPTIONS' == req.method){
+    res.send(200);
+  }else{
+      next();
+    }
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -140,6 +142,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+/*app.use('/api/articles', apiArticlesRouter);*/
 app.use('/api/users', apiUsersRouter);
 
 // catch 404 and forward to error handler
