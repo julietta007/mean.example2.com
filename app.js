@@ -14,6 +14,7 @@ var User = require('./models/user');
 //Router
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var articlesRouter = require('./routes/articles');
 var apiUsersRouter = require('./routes/api/users');
 var apiArticlesRouter = require('./routes/api/articles');
 
@@ -90,7 +91,7 @@ next();
 
 //Session based access control
 app.use(function(req,res,next){
-  //return next();
+  return next();
 
 var whitelist = [
     '/',
@@ -147,6 +148,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/articles', articlesRouter);
 app.use('/api/articles', apiArticlesRouter);
 app.use('/api/users', apiUsersRouter);
 

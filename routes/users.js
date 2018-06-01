@@ -3,27 +3,28 @@ var router = express.Router();
 var passport = require('passport');
 var User = require('../models/user');
 
-router.get('/', function(req, res, next){  
+router.get('/', function(req, res, next){
   res.render('users/index', {title: 'User Management'});
 });
 
-router.get('/register', function(req, res, next){
-  res.render('users/register', {
-     title: 'Create an Account'
-    });
+router.get('/register', function(req, res, next) {
+  res.render('users/register', { 
+    title: 'Create an Account'
+   });
 });
 
 router.get('/login', function(req, res, next){
-  res.render('users/login', {title: 'Create a Login Account'});
+  res.render('users/login', {title: 'Login'});
 });
 
-router.post('/login',
-  passport.authenticate('local'),
+router.post(
+  '/login',
+  passport.authenticate('local'), 
   function(req, res, next){
     res.redirect('/ionic');
 });
 
-router.get('/logout', function(req, res,next){
+router.get('/logout', function(req, res, next){
   req.logout();
   res.redirect('/users/login');
 });

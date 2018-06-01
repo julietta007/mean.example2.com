@@ -34,6 +34,7 @@ var Article = new Schema({
 
 //Auto set the slug prior to validation
 Article.pre('validate', function(next){
+
   if(this.title){
     this.slug = slug(this.title).toLowerCase();
   }
