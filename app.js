@@ -90,7 +90,7 @@ next();
 
 //Session based access control
 app.use(function(req,res,next){
-  return next();
+  //return next();
 
 var whitelist = [
     '/',
@@ -106,7 +106,7 @@ var whitelist = [
   //Allow access to dynamic end points
   var subs = [
     '/stylesheets/',
-    '/src/',
+    '/src/'
   ];
   
   for(var sub of subs){
