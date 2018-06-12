@@ -1,0 +1,118 @@
+.headline a {
+  display: block;
+}
+
+.left {
+  width: 50%;
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.clearfix:after,
+.clearfixItems li:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.center {
+  text-align: center;
+}
+
+.row{ 
+    display:flex;
+}
+
+.col{
+    flex: 0 0 50%;
+    /*border: 1px solid #998000;*/
+}
+
+.font-size: headline {
+  90px;
+}
+.flexbox {
+  display: flex;
+}
+
+a.flex-item {
+  text-decoration: none;
+}
+
+.flex-item {
+  flex: 1;
+  /*  width: 13.285714285714285714285714285714%;*/
+  width: 13.43%;
+  min-height: 125px;
+  background: #000;
+  box-sizing: border-box;
+  margin: .5%;
+  /*border: 7px solid #fff;*/
+  display: table;
+}
+
+.flex-item:first-child {
+  margin-left: 0;
+}
+
+.flex-item:last-child {
+  margin-right: 0;
+}
+
+.flex-item>div {
+  vertical-align: middle;
+  display: table-cell;
+  text-align: center;
+  padding: 1rem;
+}
+
+.l1 {
+  background: #000000;
+  color: #fff;
+}
+
+.l2 {
+  background: #333333;
+  color: #fff;
+}
+
+.l3 {
+  background: #4d4d4d;
+  color: #fff;
+}
+
+.l4 {
+  background: #808080;
+  color: #fff;
+}
+
+.l5 {
+  background: #999999;
+  color: #fff;
+}
+
+.l6 {
+  background: #b3b3b3;
+  color: #000;
+}
+
+.l7 {
+  background: #cccccc;
+  color: #000;
+}
+
+.l8 {
+  background: #f2f2f2;
+  color: #000;
+}
+
+.l9 {
+  background: #ffffff url('/images/personal_logo/2018_2c_logo_h_logo.png') no-repeat center;
+  background-size: 40%;
+  color: #fff; 
+}

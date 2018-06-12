@@ -1,0 +1,42 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/styleResume.css')
+    link(rel='stylesheet', href='/stylesheets/gradientstyle.css')
+    link(href="https://fonts.googleapis.com/css?family=Montserrat|Nanum+Gothic" rel="stylesheet")
+
+  body
+    div.clearfix
+      div.left
+        a(href='/' style='font-size:2.5em;') Julietta Hensgen
+        div
+          a(href='/' style='font-size:1.25em;') Designer/
+          a(href='/develop' style='font-size:1.25em;') Developer
+
+
+      div.right(style='text-align: right; display: inline-block;')
+        div.headline
+          a(href='/' style='font-size:2em;') AdobeCC
+        
+          a(href='/' style='font-size:1em;') InDesign 
+          a(href='/' style='font-size:1em;') Illustrator
+          a(href='/' style='font-size:1em;') Photoshop
+          a(href='/' style='font-size:1em;') Quark  
+
+  nav
+    a(href='/') projects
+    span &nbsp;| &nbsp;
+    a(href='/resume') resume
+    span &nbsp;| &nbsp;
+    a(href='/') next
+      
+    main
+      block content
+
+      | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    div.center   
+      a(href='/') HTML, CSS, PHP, JavaScript, AJAX, Bootstrap, MongoDB, Express, Angular, Apache Cordova, Ionic, jQuery, MySQL and CakePHP
+    
+    script(defer, src="https://use.fontawesome.com/releases/v5.0.4/js/all.js")

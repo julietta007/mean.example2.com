@@ -1,5 +1,18 @@
-extends layout
+doctype html
+html
+head
+    link(href="stylesheets/home.css" rel="stylesheet")
+    title= title
+    
+body
+        
+    main
+        img(src='images/landing/landing.png' style='filter: opacity(20%)' width='100%')
+        nav.nav.center
+            a(href='/design') design
+            a(href='/develop') develop
+            a(href='/contact') contact
 
-block content
-  h1= title
-  p Welcome to #{title}
+            div.center.design
+                a(href='/design' style='font-size:2em;') design
+                a(href='/design' style='font-size:.5em') portfolio

@@ -95,10 +95,28 @@ app.use(function(req,res,next){
   return next();
 
 var whitelist = [
-    '/',
-    '/favicon.ico',
-    '/users/login',
-    '/users/register'
+  '/',
+  '/resume',
+  '/favicon.ico',
+  '/public',
+  '/users/login',
+  '/users/register',
+  '/api/users/register',
+  '/auth/github',
+  '/aldi',
+  '/ace',
+  '/bank_one',
+  '/chicago_public_schools',
+  '/contact',
+  '/design',
+  '/develop',
+  '/hallmark',
+  '/index',
+  '/jhalcomb',
+  '/kohls',
+  '/l_m',
+  '/virginia_slims'
+  
   ];
 
   if(whitelist.indexOf(req.url) !== -1){
